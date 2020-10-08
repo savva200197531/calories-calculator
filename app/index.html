@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Calories calculator</title>
+</head>
+<body>
+<div class="container">
+  <div class="title">
+    <h1 class="title__text">
+      Калькулятор калорий
+    </h1>
+  </div>
+  <div class="calculator">
+    <div class="calculator__section">
+      <div class="age">
+        <span class="age__text">Возраст:</span>
+        <input type="text" class="text-input age__input" id="age__input" maxlength="3">
+        <label for="age__input" class="age__label">лет</label>
+      </div>
+    </div>
+    <div class="calculator__section">
+      <div class="gender">
+        <span class="gender__text">Пол:</span>
+        <input type="radio" id="gender__male" class="radio-input gender__radio" name="gender">
+        <label for="gender__male" class="gender__label">Мужской</label>
+        <input type="radio" id="gender__female" class="radio-input gender__radio" name="gender">
+        <label for="gender__female" class="gender__label">Женский</label>
+      </div>
+    </div>
+    <div class="calculator__section">
+      <div class="weight">
+        <span class="weight__text">Вес:</span>
+        <input type="text" class="text-input weight__input" maxlength="3">
+        <input type="radio" id="weight__kilos" class="radio-input weight__radio" name="weight">
+        <label for="weight__kilos" class="weight__label">в килограммах</label>
+        <input type="radio" id="weight__pound" class="radio-input weight__radio" name="weight">
+        <label for="weight__pound" class="weight__label">в фунтах</label>
+      </div>
+    </div>
+    <div class="calculator__section">
+      <div class="height">
+        <span class="height__text">Рост:</span>
+        <input type="text" class="text-input height__input" maxlength="3">
+        <input type="radio" id="height__cm" class="radio-input height__radio" name="height">
+        <label for="height__cm" class="height__label">сантиметров</label>
+        <input type="radio" id="height__feet" class="radio-input height__radio" name="height">
+        <label for="height__feet" class="height__label">футов/дюймов</label>
+      </div>
+    </div>
+    <div class="calculator__section">
+      <div class="activity">
+        <span class="activity__text">Степень физической активности:</span>
+        <div class="activity__select">
+          <select name="activity" id="activity" class="activity__list">
+            <option>Основной обмен</option>
+            <option>минимум/отсутствие физической нагрузки</option>
+            <option>3 раза в неделю</option>
+            <option>5 раз в неделю</option>
+            <option>5 раз в неделю (интенсивно)</option>
+            <option>Каждый день</option>
+            <option>Каждый день интенсивно или два раза в день</option>
+            <option>Ежедневная физическая нагрузка+физическая работа</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="calculator__section">
+      <div class="unit">
+        <span class="unit__text">Результат в:</span>
+        <input type="radio" id="unit__kcal" class="radio-input unit__radio" name="unit">
+        <label for="unit__kcal" class="unit__label">сантиметров</label>
+        <input type="radio" id="unit__kj" class="radio-input unit__radio" name="unit">
+        <label for="unit__kj" class="unit__label">футов/дюймов</label>
+      </div>
+    </div>
+    <div class="calculator__section">
+      <div class="formula">
+        <span class="formula__text">Формула:</span>
+        <input type="radio" id="formula__mif" class="radio-input formula__radio" name="formula">
+        <label for="formula__mif" class="formula__label">Миффлина - Сан Жеора</label>
+        <input type="radio" id="formula__har" class="radio-input formula__radio" name="formula">
+        <label for="formula__har" class="formula__label">Харриса-Бенедикта</label>
+      </div>
+    </div>
+  </div>
+  <div class="result">
+    <button class="result__btn">
+      Сколько нужно калорий в день
+    </button>
+  </div>
+</div>
+<script src="js/index.js"></script>
+</body>
+</html>
