@@ -34,12 +34,13 @@ a {
 .calculator {
     text-align: left;
     padding: 30px 0;
-    max-width: 500px;
+    max-width: 530px;
     margin: 0 auto;
 }
 
 .calculator__section {
     margin-top: 20px;
+    position: relative;
 }
 
 .title {
@@ -75,6 +76,12 @@ a {
 .text-input {
     font-weight: 100;
     height: 20px;
+    background: transparent;
+    color: #fff;
+    font-size: 15px;
+    border: 1px solid#fff;
+    width: 200px;
+    border-radius: 4px;
 }
 
 .radio-input {
@@ -87,21 +94,64 @@ label:not(.age__label) {
     margin-left: -5px;
 }
 
-.activity__select {
-    width: 200px;
-    height: 20px;
-    margin-left: 10px;
+.select {
+    /*margin-left: 10px;*/
+    display: inline-block;
 }
 
-.activity__list {
-    width: 200px;
-    height: 26px;
+.list {
+    width: 204px;
+    height: 24px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid#fff;
+    font-size: 15px;
+    border-radius: 4px;
+}
+
+.activity__select {
+    margin-left: 10px;
 }
 
 .activity {
     display: flex;
     align-items: center;
 }
+
+.error {
+    color: red;
+    transition: 0.1s ease-in;
+    opacity: 0;
+    margin-bottom: -17px;
+    height: 19px;
+}
+
+.vibration {
+    animation: 0.1s tremor ease-out;
+    animation-iteration-count: 3;
+}
+
+.no-valid {
+    border: 1px solid crimson;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes tremor {
+    0%, 25% {
+        left: -1px;
+        -webkit-transform: translateX(-1%);
+        transform: translateX(-1%);
+    }
+    50%, 100% {
+        left: 1px;
+        -webkit-transform: translateX(1%);
+        transform: translateX(1%);
+    }
+}
+
 
 
 
