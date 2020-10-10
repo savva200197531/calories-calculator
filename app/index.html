@@ -20,7 +20,7 @@
       <div class="calculator__section">
         <div class="age">
           <span class="age__text">Возраст:</span>
-          <input type="text" class="text-input age__input num" id="age__input" maxlength="3">
+          <input type="text" value="19" class="text-input age__input num" id="age__input" maxlength="3">
           <label for="age__input" class="age__label">лет</label>
           <div class="error"></div>
         </div>
@@ -37,7 +37,7 @@
       <div class="calculator__section">
         <div class="weight">
           <span class="weight__text">Вес:</span>
-          <input type="text" class="text-input weight__input num" maxlength="3">
+          <input type="text" value="62" class="text-input weight__input num" maxlength="3">
           <input type="radio" id="weight__kilos" class="radio-input weight__radio" name="weight" checked>
           <label for="weight__kilos" class="weight__label">в килограммах</label>
           <input type="radio" id="weight__pound" class="radio-input weight__radio" name="weight">
@@ -48,7 +48,7 @@
       <div class="calculator__section">
         <div class="height">
           <span class="height__text">Рост:</span>
-          <input type="text" class="text-input height__input num" maxlength="3">
+          <input type="text" value="180" class="text-input height__input num" maxlength="3">
           <div class="select height__select">
             <select class="list height__list" name="height" id="height">
               <option value="4.0">4 фт. 0 д.</option>
@@ -99,13 +99,11 @@
           <div class="select activity__select">
             <select name="activity" id="activity" class="list activity__list">
               <option value="1.0">Основной обмен</option>
-              <option value="1.2">минимум/отсутствие физической нагрузки</option>
-              <option value="1.375">3 раза в неделю</option>
-              <option value="1.4625">5 раз в неделю</option>
-              <option value="1.550">5 раз в неделю (интенсивно)</option>
-              <option value="1.6375">Каждый день</option>
-              <option value="1.725">Каждый день интенсивно или два раза в день</option>
-              <option value="1.9">Ежедневная физическая нагрузка+физическая работа</option>
+              <option value="1.2">Минимальная активность</option>
+              <option value="1.375">Слабый уровень активности</option>
+              <option value="1.55">Умеренный уровень активности</option>
+              <option value="1.7">Тяжелая или трудоемкая активность</option>
+              <option value="1.9">Экстремальный уровень</option>
             </select>
           </div>
         </div>
@@ -133,6 +131,9 @@
       <button class="result__btn">
         Сколько нужно калорий в день
       </button>
+      <h2 class="result__output">
+      
+      </h2>
     </div>
   </form>
 </div>

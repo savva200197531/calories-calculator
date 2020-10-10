@@ -54,7 +54,7 @@ a {
 
 .result {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .result__btn {
@@ -71,6 +71,10 @@ a {
     background: rgba(51, 160, 51, 0.6);
     transition: 0.2s ease-in;
     border-radius: 4px;
+}
+
+.result__output {
+    margin-top: 10px;
 }
 
 .text-input {
