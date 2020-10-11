@@ -5,10 +5,6 @@ body {
     font-weight: 500;
     margin: 0;
     padding: 0;
-    background-image: url('https://wallbox.ru/resize/1600x1200/wallpapers/main/201136/tekstury-oboi-siniy-c4c9e16.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
     color: #fff;
 }
 
@@ -27,8 +23,11 @@ a {
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
+    background-image: url('https://wallbox.ru/resize/1600x1200/wallpapers/main/201136/tekstury-oboi-siniy-c4c9e16.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
 }
 
 .calculator {
@@ -73,10 +72,6 @@ a {
     border-radius: 4px;
 }
 
-.result__output {
-    margin-top: 10px;
-}
-
 .text-input {
     font-weight: 100;
     height: 20px;
@@ -111,6 +106,7 @@ label:not(.age__label) {
     border: 1px solid#fff;
     font-size: 15px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .activity__select {
@@ -141,6 +137,93 @@ label:not(.age__label) {
 
 .hidden {
     display: none;
+}
+
+.hiddenOpacity {
+    opacity: 0;
+    z-index: -1;
+}
+
+.blured {
+    filter: blur(2px);
+    transition: 0.2s ease-in;
+}
+
+.help {
+    position: relative;
+}
+
+.help:before {
+    position: absolute;
+    content: '?';
+    background: rgba(69, 176, 69, 0.6);
+    border: 1px solid#45b045;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    left: 10px;
+    top: -10px;
+    text-align: center;
+}
+
+.help:hover:before {
+    cursor: pointer;
+    background: rgba(51, 160, 51, 0.6);
+    transition: 0.2s ease-in;
+}
+
+.modal {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    transition: 0.2s ease-in;
+    /*opacity: 1;*/
+}
+
+.modal-window {
+    position: absolute;
+    border: 1px solid;
+    padding: 2px 8px;
+    border-radius: 4px;
+    max-width: 700px;
+    max-height: 400px;
+    width: 100%;
+    height: 100%;
+    background: url('https://wallbox.ru/resize/1600x1200/wallpapers/main/201136/tekstury-oboi-siniy-c4c9e16.jpg') no-repeat center center;
+    top: calc(50% - 300px);
+    left: calc(50% - 350px);
+    box-shadow: 0 0 9px 1px rgba(0,0,0,0.75);
+}
+
+.modal-close {
+    position: absolute;
+    right: 9px;
+    top: 8px;
+    border: 1px solid;
+    padding: 2px 7px;
+    border-radius: 4px;
+}
+
+.modal-close:hover {
+    cursor: pointer;
+    transition: 0.2s ease-in;
+}
+
+.rules__list {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.rules__item {
+    margin-top: 5px;
+}
+
+.result__output {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    line-height: 400px;
 }
 
 @keyframes tremor {

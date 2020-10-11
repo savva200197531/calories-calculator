@@ -1,22 +1,11 @@
-// function calsPerDay() {
-//   function find(id) { return document.getElementById(id) }
-//
-//   var age = find("age").value
-//   var height = find("height").value * 2.54
-//   var weight = find("weight").value / 2.2
-//   var result = 0
-//   if (find("male").checked)
-//     result = 66.47 + (13.75 * weight) + (5.0 * height - (6.75 * age))
-//   else if (find("female").checked)
-//     result = 665.09 + (9.56 * weight) + (1.84 * height - (4.67 * age))
-//   find("totalCals").innerHTML = Math.round( result )
-// }
-// calsPerDay()
-
 const form = document.querySelector('#form')
 const heightSelect = document.querySelector('.height__select')
 const heightRadio = document.querySelectorAll('.height__radio')
 const resultOutput = document.querySelector('.result__output')
+const modalHelp = document.querySelector('.activity__select-rules')
+const modalResult = document.querySelector('.result__output-modal')
+const help = document.querySelector('.help')
+const container = document.querySelector('.container')
 
 class Calculate {
   constructor() {
@@ -41,12 +30,10 @@ class Calculate {
       btn.addEventListener('click', () => {
         if (btn.name === 'gender') {
           btn.id === 'gender__male' ? this.selectors.genderSelector = true : this.selectors.genderSelector = false
-          console.log(this.selectors.genderSelector)
         }
 
         if (btn.name === 'weight') {
           btn.id === 'weight__kilos' ? this.selectors.weightSelector = true : this.selectors.weightSelector = false
-          console.log(this.selectors.weightSelector)
         }
 
         if (btn.name === 'height') {
@@ -59,17 +46,14 @@ class Calculate {
             heightInput.classList.add('hidden')
             this.selectors.heightSelector = false
           }
-          console.log(this.selectors.heightSelector)
         }
 
         if (btn.name === 'unit') {
           btn.id === 'unit__kcal' ? this.selectors.unitSelector = true : this.selectors.unitSelector = false
-          console.log(this.selectors.unitSelector)
         }
 
         if (btn.name === 'formula') {
           btn.id === 'formula__mif' ? this.selectors.formulaSelector = true : this.selectors.formulaSelector = false
-          console.log(this.selectors.formulaSelector)
         }
       })
     })
@@ -94,10 +78,10 @@ class Calculate {
     if (!element.className.includes('hidden')) {
       this.elementArr.push(element)
       if (element.value.trim() === '') {
-        const message = `Поле ${ errorLine } должно быть заполнено`
+        const message = `* Поле ${ errorLine } должно быть заполнено`
         this.addError(element, error, message)
       } else if (element.className.includes('num') && isNaN(element.value.trim())) {
-        const message = `Поле ${ errorLine } должно быть числовым`
+        const message = `* Поле ${ errorLine } должно быть числовым`
         this.addError(element, error, message)
       } else {
         this.elementArrCount++
@@ -134,7 +118,8 @@ class Calculate {
     let age,
       weight,
       height,
-      activity
+      activity,
+      resultUnit
 
     for (let element of form.elements) {
       if (!element.className.includes('hidden') && (element.className.includes('text-input') || element.className.includes('list'))) {
@@ -164,7 +149,6 @@ class Calculate {
       height = find('height__list') * 30.19
     }
     activity = find('activity__list')
-    console.log(age, weight, height, activity)
 
     if (this.selectors.genderSelector) {
       if (this.selectors.formulaSelector) {
@@ -181,26 +165,49 @@ class Calculate {
     }
     if (!this.selectors.unitSelector) {
       this.result *= 4.1868
+      resultUnit = 'килоджоулей'
+    } else {
+      resultUnit = 'килокалорий'
     }
-    resultOutput.textContent = `Результат: ${this.result}`
-    // 2. Доработанный вариант формулы Миффлина-Сан Жеора, в отличие от упрощенного дает более точную информацию и учитывает степень физической активности человека:
-    //
-    //   для мужчин: (10 x вес (кг) + 6.25 x рост (см) – 5 x возраст (г) + 5) x A;
-    // для женщин: (10 x вес (кг) + 6.25 x рост (см) – 5 x возраст (г) – 161) x A.
-    //
-    //   A – это уровень активности человека, его различают обычно по пяти степеням физических нагрузок в сутки:
-    //
-    //   1,2 – минимальная активность, сидячая работа, не требующая значительных физических нагрузок;
-    // 1,375 – слабый уровень активности: интенсивные упражнения не менее 20 минут один-три раза в неделю. Это может быть езда на велосипеде, бег трусцой, баскетбол, плавание, катание на коньках и т. д. Если вы не тренируетесь регулярно, но сохраняете занятый стиль жизни, который требует частой ходьбы в течение длительного времени, то выберите этот коэффициент;
-    // 1,55 – умеренный уровень активности: интенсивная тренировка не менее 30-60 мин три-четыре раза в неделю (любой из перечисленных выше видов спорта);
-    // 1,7 – тяжелая или трудоемкая активность: интенсивные упражнения и занятия спортом 5-7 дней в неделю. Трудоемкие занятия также подходят для этого уровня, они включают строительные работы (кирпичная кладка, столярное дело и т. д.), занятость в сельском хозяйстве и т. п.;
-    // 1,9 – экстремальный уровень: включает чрезвычайно активные и/или очень энергозатратные виды деятельности: занятия спортом с почти ежедневным графиком и несколькими тренировками в течение дня; очень трудоемкая работа, например, сгребание угля или длительный рабочий день на сборочной линии. Зачастую этого уровня активности очень трудно достичь.
+    this.modalResult()
+    resultOutput.textContent = `Результат: ${ this.result } ${ resultUnit }`
+  }
 
+  modalResult(event) {
+    if (event) {
+      if (event.target.className.includes('modal-close') || event.target.className.includes('modal')) {
+        modalResult.classList.add('hiddenOpacity')
+        container.classList.remove('blured')
+
+      }
+    } else {
+      modalResult.classList.remove('hiddenOpacity')
+      container.classList.add('blured')
+    }
+  }
+
+  modalHelp(event) {
+    if (event.target.className.includes('modal-close') || event.target.className.includes('modal')) {
+      modalHelp.classList.add('hiddenOpacity')
+      container.classList.remove('blured')
+    } else if (event.target.className.includes('help')) {
+      modalHelp.classList.remove('hiddenOpacity')
+      container.classList.add('blured')
+    }
   }
 }
 
 const calc = new Calculate()
 
+modalHelp.addEventListener('click', event => {
+  calc.modalHelp(event)
+})
+help.addEventListener('click', event => {
+  calc.modalHelp(event)
+})
+modalResult.addEventListener('click', event => {
+  calc.modalResult(event)
+})
 form.addEventListener('submit', (event) => {
   event.preventDefault()
   calc.validation()
